@@ -1,28 +1,27 @@
 #!/usr/bin/python3
-
 """ Calculate Minimum Operations """
 
-def min_steps(target_count):
+def minOperations(n):
     """
-    In a text file, there is a single character 'H'. The text editor can perform
-    two operations: Copy All and Paste. Given a number target_count, this method calculates
-    the minimum number of operations required to achieve exactly target_count 'H' characters.
+    Calculates the minimum number of operations needed to result in exactly
+    n 'H' characters in the file, based on prime factorization logic without 
+    separating the steps.
     
     Returns:
-        An integer representing the minimum number of operations.
-        If target_count is impossible to reach, returns 0.
+        The minimum number of operations as an integer.
+        Returns 0 if n is less than or equal to 1.
     """
-    if not isinstance(target_count, int):
+    if n < 2:
         return 0
 
     total_operations = 0
     divisor = 2
 
-    while divisor <= target_count:
-        if target_count % divisor == 0:
-            target_count //= divisor
+    while divisor <= n:
+        # If divisor is a factor of n, reduce n by dividing and accumulate operations
+        while n % divisor == 0:
             total_operations += divisor
-            divisor = 1
+            n //= divisor
         divisor += 1
 
     return total_operations
