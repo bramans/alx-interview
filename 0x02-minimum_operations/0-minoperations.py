@@ -1,25 +1,26 @@
 #!/usr/bin/python3
-"""Minimum Operations"""
+
+""" Minimum Operations """
+
 
 def minOperations(n):
-	"""Calculates the fewest number of operations needed
-        to result in exactly n H characters in the file"""
-    if n <= 1:
+    """
+    In a text file, there is a single character H. Your text editor can execute
+    only two operations in this file: Copy All and Paste. Given a number n,
+    write a method that calculates the fewest number of operations needed to
+    result in exactly n H characters in the file.
+    Returns an integer
+    If n is impossible to achieve, returns 0
+    """
+    if not isinstance(n, int):
         return 0
-    
+
     operations = 0
-    factor = 2
-    
-    while n > 1:
-        while n % factor == 0:
-            operations += factor
-            n //= factor
-        factor += 1
-        
-        # Optimization: If factor > sqrt(n), n must be prime
-        if factor * factor > n:
-            if n > 1:
-                operations += n
-            break
-    
+    iterator = 2
+    while (iterator <= n):
+        if not (n % iterator):
+            n = int(n / iterator)
+            operations += iterator
+            iterator = 1
+        iterator += 1
     return operations
